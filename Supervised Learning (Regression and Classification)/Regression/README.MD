@@ -108,6 +108,116 @@ $f(x) = wx+b$ 의 $w$, $b$ : 모델의 매개 변수(계수, 가중치)
 - 최소값에 가까워질수록 기울기(도함수)가 작아지기 때문
 
 
+### 표현식
 
+- 편도 함수</br>
 
+    <img src="../image/편도함수에 대한 표현식.png" width=80%></br>
 
+- 경사 하강법</br>
+
+    <img src="../image/경사 하강법 표현식.png" width=80%></br>
+
+- 선형 회귀</br>
+
+    <img src="../image/선형 회귀 모델 표현식.png" width=80%></br>
+
+</br>
+
+## 다중 특징 (Multiple Features)
+
+- 단일 특징</br>
+<img src="../image/단일 특징 예시.png" width=80%></br>
+
+- 다중 특징</br>
+<img src="../image/다중 특징 예시.png" width=80%></br>
+
+### 다중 특징 표기
+<img src="../image/다중 특징 표기.png" width=80%></br>
+
+<img src="../image/다중 특징 표기 2.png" width=80%></br>
+
+>dot product : 내적
+
+***다중 선형 회귀*** : 다중 특징 선형 회귀
+
+</br>
+
+### 다중 특징 경사 하강법
+<img src="../image/다중 특징 경사 하강법.png" width=80%></br>
+
+</br>
+
+## 벡터화
+
+<img src="../image/벡터화.png" width=80%></br>
+- 인덱스가 0부터 시작하는 Python 배열 대신 1부터 시작하는 NumPy 배열 사용
+- ```np.dot()``` : dot product 구현
+
+### 벡터화로 구현한 경사 하강법
+<img src="../image/벡터화 경사 하강법.png" width=80%></br>
+
+## 특성 스케일링 (Feature Scaling)
+
+데이터의 특성(feature)들의 범위를 동일하게 조정
+
+### 특성 스케일링을 하는 이유
+
+- 학습 알고리즘의 성능 향상
+    - 특성들의 범위가 다르면 특성의 범위가 큰 특성이 학습 알고리즘에 더 큰 영향
+    - 모든 특성이 동일한 비중으로 학습에 참여하도록 하여 알고리즘의 성능 향상
+
+- 이상치의 영향 최소화
+    - 이상치가 있는 특성은 다른 특성에 비해 매우 큰 값
+    - 이 경우, 이상치가 학습 알고리즘의 학습에 큰 영향
+
+- 비교의 용이성
+    - 서로 다른 데이터 세트의 특성들 비교 용이
+
+### 특성 스케일링을 하는 대표적인 방법
+
+- 표준화 (Standardization)
+
+    - 특성들의 평균을 0, 분산을 1로 변환
+
+        <pre>x_std = (x - mu) / sigma</pre>
+        - ```x_std``` : 표준화된 특성 값
+        - ```x``` : 원본 특성 값
+        - ```mu``` : 특성의 평균
+        - ```sigma``` : 특성의 분산
+
+</br>
+
+- 정규화 (Normalization)
+
+    - 특성들을 0과 1 사이의 범위로 변환
+
+        <pre>x_norm = (x - min) / (max - min)</pre>
+        - ```x_norm``` : 정규화된 특성 값
+        - ```x``` : 원본 특성 값
+        - ```min``` : 특성의 최소값
+        - ```max``` : 특성의 최대값
+
+</br>
+
+- Min-Max 
+
+    - 특성들을 최소값과 최대값 사이의 범위로 변환
+
+        <pre>x_minmax = (x - min) / (max - min)</pre>
+        - ```x_minmax``` : Min-max 방법으로 변환된 특성 값
+        - ```x``` : 원본 특성 값
+        - ```min``` : 특성의 최소값
+        - ```max``` : 특성의 최대값
+
+</br>
+
+- Robust Scaler
+
+    - 이상치에 영향을 받지 않는 스케일링 방법
+
+        <pre>x_robust = (x - median) / iqr</pre>
+        - ```x_robust``` : RobustScaler로 변환된 특성 값
+        - ```x``` : 원본 특성 값
+        - ```median``` : 특성의 중간값
+        - ```iqr``` : 특성의 제 3사분위값과 제 1사분위값의 차이
